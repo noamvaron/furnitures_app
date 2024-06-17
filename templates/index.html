@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Furniture Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Furniture Shop</h1>
+        <a href="{{ url_for('add_furniture') }}">Add New Furniture</a>
+        <ul>
+            {% for furniture in furnitures %}
+                <li>
+                    <h2>{{ furniture.name }}</h2>
+                    <p>{{ furniture.description }}</p>
+                    <p>Price: ${{ furniture.price }}</p>
+                    <div class="actions">
+                        <a href="{{ url_for('update_furniture', id=furniture._id) }}">Edit</a>
+                        <a href="{{ url_for('delete_furniture', id=furniture._id) }}">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
