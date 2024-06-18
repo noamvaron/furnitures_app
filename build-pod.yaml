@@ -9,6 +9,13 @@ spec:
       imagePullPolicy: Always
       securityContext:
         privileged: true
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: "500m"
+        limits:
+          memory: "2Gi"
+          cpu: "1"
  
     - name: python-test
       image: python:3.9-slim
