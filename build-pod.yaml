@@ -4,8 +4,8 @@ metadata:
   name: jenkins-agent-pod
 spec:
   containers:
-    - name: ez-docker-helm-build
-      image: ezezeasy/ez-docker-helm-build:1.41
+    - name: dind
+      image: drpsychick/dind-buildx-helm
       imagePullPolicy: Always
       securityContext:
         privileged: true
