@@ -11,12 +11,12 @@ spec:
         privileged: true
       resources:
         requests:
-          memory: "1Gi"
-          cpu: "500m"
-        limits:
           memory: "2Gi"
           cpu: "1"
- 
+        limits:
+          memory: "4Gi"
+          cpu: "2"
+
     - name: python-test
       image: python:3.9-slim
       command: ["sleep"]
@@ -24,7 +24,7 @@ spec:
       imagePullPolicy: Always
       securityContext:
         privileged: false
- 
+
     - name: docker-compose
       image: docker/compose:latest
       command: ["sleep"]
@@ -35,7 +35,7 @@ spec:
       volumeMounts:
         - name: docker-socket
           mountPath: /var/run/docker.sock
- 
+
   volumes:
     - name: docker-socket
       hostPath:
