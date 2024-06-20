@@ -13,6 +13,6 @@ RUN echo "Installing dependencies" \
 # Copy the rest of the application code
 COPY . /app
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["python", "app.py"]

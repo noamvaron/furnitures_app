@@ -41,7 +41,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 3000
+  port: 5000
 
 ingress:
   enabled: false
@@ -73,7 +73,7 @@ resources: {}
 
 livenessProbe:
   tcpSocket:
-    port: 3000
+    port: 5000
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5
@@ -82,7 +82,7 @@ livenessProbe:
 
 readinessProbe:
   tcpSocket:
-    port: 3000
+    port: 5000
   initialDelaySeconds: 10
   periodSeconds: 10
   timeoutSeconds: 5
