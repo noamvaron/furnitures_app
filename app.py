@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 # Initialize the MongoDB client and specify the database and collection
-client = MongoClient("mongodb://mongo:27017/")
+client = MongoClient("mongodb://root:your-root-password@mongo-mongodb:27017/")
 db = client.furnituredb
 collection = db.furnitures
 
