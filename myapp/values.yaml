@@ -72,22 +72,13 @@ resources: {}
   #   memory: 128Mi
 
 livenessProbe:
-  tcpSocket:
+  httpGet:
+    path: /
     port: 5000
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 5
-  failureThreshold: 3
-  successThreshold: 1
-
 readinessProbe:
-  tcpSocket:
+  httpGet:
+    path: /
     port: 5000
-  initialDelaySeconds: 10
-  periodSeconds: 10
-  timeoutSeconds: 5
-  failureThreshold: 3
-  successThreshold: 1
 
 autoscaling:
   enabled: false

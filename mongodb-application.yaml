@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: mongodb
-    targetRevision: "14.12.3"
+    targetRevision: "14.12.3"  # A stable version
     helm:
       parameters:
         - name: auth.rootPassword
@@ -19,6 +19,10 @@ spec:
           value: "true"
         - name: persistence.size
           value: 8Gi
+        - name: image.repository
+          value: "arm64v8/mongo"
+        - name: image.tag
+          value: "5"
   destination:
     server: https://kubernetes.default.svc
     namespace: default
