@@ -11,8 +11,10 @@ spec:
     targetRevision: "12.1.2"  # A stable version
     helm:
       parameters:
-        - name: global.postgresql.auth.postgresPassword
-          value: password
+        - name: global.postgresql.auth.existingSecret
+          value: postgresql
+        - name: global.postgresql.auth.username
+          value: admin
         - name: persistence.enabled
           value: "true"
         - name: persistence.size
