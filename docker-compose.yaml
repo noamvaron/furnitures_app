@@ -1,25 +1,30 @@
 version: '3.8'
 services:
-  mongo:
-    image: mongo
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: furnituredb
     ports:
-      - "27017:27017"
+      - "5432:5432"
     volumes:
-      - mongo-data:/data/db
+      - postgres-data:/var/lib/postgresql/data
 
   furniture_app:
     build: .
     ports:
-      - "3000:3000"
+      - "5001:5001"
     depends_on:
-      - mongo
+      - db
   
   test:
     build:
       context: .
       dockerfile: Dockerfile.test
     depends_on:
-      - mongo
+      - db
+      - furniture_app
 
 volumes:
-  mongo-data:
+  postgres-data:

@@ -2,17 +2,15 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Copy requirements file first
 COPY requirements.txt /app/
 
-# Install dependencies with verbose output
-RUN echo "Installing dependencies" \
-    && pip install --no-cache-dir --verbose -r requirements.txt \
-    && echo "Dependencies installed successfully"
+RUN apt-get update && \
+    apt-get install -y libpq-dev gcc
 
-# Copy the rest of the application code
+RUN pip install --no-cache-dir -r requirements.txt 
+
 COPY . /app
 
-EXPOSE 5000
+EXPOSE 5001
 
 CMD ["python", "app.py"]
