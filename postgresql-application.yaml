@@ -13,8 +13,10 @@ spec:
       parameters:
         - name: global.postgresql.auth.existingSecret
           value: postgresql
-        - name: global.postgresql.auth.username
-          value: admin
+        - name: global.postgresql.auth.postgresUsername
+          value: postgresql-username
+        - name: global.postgresql.auth.postgresPassword
+          value: postgresql-password
         - name: persistence.enabled
           value: "true"
         - name: persistence.size
