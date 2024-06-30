@@ -41,7 +41,14 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 5001
+  port: 5000
+
+env:
+  dbName: furnituredb
+  dbHost: my-mysql
+  dbUsername: username
+  dbPassword: password
+
 
 ingress:
   enabled: false
@@ -73,7 +80,7 @@ resources: {}
 
 livenessProbe:
   tcpSocket:
-    port: 5001
+    port: 5000
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5
@@ -82,7 +89,7 @@ livenessProbe:
 
 readinessProbe:
   tcpSocket:
-    port: 5001
+    port: 5000
   initialDelaySeconds: 10
   periodSeconds: 10
   timeoutSeconds: 5
@@ -114,9 +121,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-env:
-  dbName: furnituredb
-  dbHost: my-postgresql
-  dbUsername: postgres
-  dbPassword: ZtGMMCF67D

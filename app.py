@@ -1,10 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+import pymysql
+from sqlalchemy import create_engine
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ZtGMMCF67D@my-postgresql:5432/furnituredb'
+db_user = 'username'
+db_password = 'password'
+db_host = 'my-mysql'
+db_name = 'furnituredb'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+# Function to create database if it doesn't exist
+def create_database_if_not_exists():
+    engine = create_engine(f'mysql+pymysql://{db_user}:{db_password}@{db_host}')
+    conn = engine.connect()
+    conn.execute(f"CREATE DATABASE IF NOT EXISTS {db_name}")
+    conn.close()
+    print(f"Database {db_name} ensured to exist.")
+
+create_database_if_not_exists()
 
 class Furniture(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -64,4 +80,4 @@ def delete_furniture(id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    app.run(debug=True, host="0.0.0.0", port=5000)

@@ -1,0 +1,5 @@
+auth:
+  rootPassword: root-password
+  database: furnituredb
+  username: username
+  password: password

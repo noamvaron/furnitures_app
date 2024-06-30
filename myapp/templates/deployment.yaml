@@ -42,7 +42,7 @@ spec:
               protocol: TCP
           env:
             - name: SQLALCHEMY_DATABASE_URI
-              value: postgresql://{{ .Values.env.dbUsername }}:{{ .Values.env.dbPassword }}@{{ .Values.env.dbHost }}:5432/{{ .Values.env.dbName }}
+              value: mysql+pymysql://{{ .Values.env.dbUsername }}:{{ .Values.env.dbPassword }}@{{ .Values.env.dbHost }}:3306/{{ .Values.env.dbName }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:

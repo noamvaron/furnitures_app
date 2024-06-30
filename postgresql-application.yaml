@@ -11,14 +11,8 @@ spec:
     targetRevision: "12.1.2"  # A stable version
     helm:
       parameters:
-        - name: global.postgresql.auth.existingSecret
-          value: postgresql
-        - name: global.postgresql.auth.usernameKey
-          value: postgres-username
-        - name: global.postgresql.auth.passwordKey
-          value: postgres-password
-        - name: global.postgresql.auth.database
-          value: furnituredb
+        - name: global.postgresql.auth.postgresPassword
+          value: password
         - name: persistence.enabled
           value: "true"
         - name: persistence.size
