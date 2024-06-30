@@ -114,3 +114,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  dbName: furnituredb
+  dbHost: my-postgresql
+  dbUsername: postgres
+  dbPassword: ZtGMMCF67D
