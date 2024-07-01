@@ -15,6 +15,7 @@ Command:
 ⁠ sh
 kubectl port-forward svc/argocd-server -n argocd 8080:443
  ⁠
+password: bKr7FoL0vtj3VcMs
 
 ### Jenkins
 
@@ -23,6 +24,8 @@ Namespace: ⁠ jenkins ⁠
 Command:
 ⁠ sh
 kubectl port-forward svc/jenkins -n jenkins 8081:8080
+
+password: UQTqL6wrWXUhPDk1Y5mLYh
  ⁠
 
 ### Prometheus
@@ -42,6 +45,7 @@ Command:
 ⁠ sh
 kubectl port-forward svc/prometheus-grafana -n monitoring 3000:3000
  ⁠
+password: prom-operator
 
 ### My Application
 
