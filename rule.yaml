@@ -1,0 +1,14 @@
+additionalPrometheusRulesMap:
+  rule-name:
+    groups:
+    - name: project
+      rules:
+      - alert: LowRunningPodsCount
+        expr: count(kube_pod_status_phase{namespace="default", pod=~"furnitures-app-myapp.*", phase="Running"}) < 3
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Low number of running pods"
+          description: "The count of running pods matching 'furnitures-app-myapp.*' in namespace 'default' is below 3."
+#helm upgrade prometheus prometheus-community/kube-prometheus-stack --namespace monitoring -f rule.yaml
