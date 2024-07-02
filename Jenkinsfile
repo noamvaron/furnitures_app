@@ -1,6 +1,6 @@
-pipeline{
-    agent{
-        kubernetes{
+pipeline {
+    agent {
+        kubernetes {
             label "furniture-agent"
             idleMinutes 5
             yamlFile 'build-pod.yaml'
@@ -8,30 +8,39 @@ pipeline{
         }
     }
  
-    environment{
+    environment {
         DOCKER_IMAGE = 'noamva96/furnitures_app'
         GITHUB_API_URL = 'https://api.github.com'
         GITHUB_REPO = 'noamvaron/furnitures_app'
         GITHUB_TOKEN = credentials('github-creds')
     }
  
-    stages{
-        stage("Checkout code"){
+    stages {
+        stage("Checkout code") {
             steps {
                 checkout scm
             }
         }
  
-        stage("Build docker image"){
+        stage("Set up Docker Buildx") {
             steps {
                 script {
-                    dockerImage = docker.build("${DOCKER_IMAGE}:latest", "--no-cache .")
+                    sh 'docker run --rm --privileged multiarch/qemu-user-static --reset -p yes'
+                    sh 'docker buildx create --use --name multiarch_builder'
                 }
             }
         }
  
-        stage("Unit Test"){
-            steps{
+        stage("Build multi-architecture Docker image") {
+            steps {
+                script {
+                    dockerImage = docker.build("${DOCKER_IMAGE}:latest", "--platform linux/amd64,linux/arm64 .")
+                }
+            }
+        }
+ 
+        stage("Unit Test") {
+            steps {
                 script {
                     sh "docker-compose -f docker-compose.yaml up --build -d"
                     sh "docker-compose -f docker-compose.yaml run test"
@@ -53,7 +62,7 @@ pipeline{
             }
         }
  
-        stage('Create merge request'){
+        stage('Create merge request') {
             when {
                 not {
                     branch 'main'
