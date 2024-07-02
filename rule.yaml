@@ -11,4 +11,4 @@ additionalPrometheusRulesMap:
         annotations:
           summary: "Low number of running pods"
           description: "The count of running pods matching 'furnitures-app-myapp.*' in namespace 'default' is below 3."
-#helm upgrade prometheus prometheus-community/kube-prometheus-stack --namespace monitoring -f rule.yaml
+# helm upgrade prometheus prometheus-community/kube-prometheus-stack --namespace monitoring -f rule.yaml

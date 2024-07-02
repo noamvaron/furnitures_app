@@ -49,7 +49,6 @@ def index():
     furnitures = Furniture.query.all()
     return render_template('index.html', furnitures=furnitures)
 
-@app.route('/add', methods=['GET', 'POST'])
 def add_furniture():
     if request.method == 'POST':
         name = request.form['name']
