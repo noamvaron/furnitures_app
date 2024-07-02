@@ -13,7 +13,7 @@ Namespace: ⁠ argocd ⁠
 
 Command:
 ⁠ sh
-kubectl port-forward svc/argocd-server -n argocd 8080:443
+kubectl port-forward svc/argocd-server -n argocd 8081:443
  ⁠
 password: bKr7FoL0vtj3VcMs
 
@@ -23,7 +23,7 @@ Namespace: ⁠ jenkins ⁠
 
 Command:
 ⁠ sh
-kubectl port-forward svc/jenkins -n jenkins 8081:8080
+kubectl port-forward svc/jenkins -n jenkins 8080:8080
 
 password: UQTqL6wrWXUhPDk1Y5mLYh
  ⁠
