@@ -43,7 +43,7 @@ Namespace: ⁠ monitoring ⁠
 
 Command:
 ⁠ sh
-kubectl port-forward svc/prometheus-grafana -n monitoring 3000:3000
+kubectl port-forward svc/prometheus-grafana -n monitoring 3000:80
  ⁠
 password: prom-operator
 
